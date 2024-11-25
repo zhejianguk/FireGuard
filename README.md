@@ -7,9 +7,9 @@ This repository contains artefacts and workflows (Parsec 3.0) to reproduce exper
 
 Platform pre-requisities
 ========================
-* An x86-64 system (for Verilator simulation, more cores will improve simulation time).
+* An x86-64 system (more cores will improve simulation time).
+* Linux operating system (we used Ubuntu 20.04 and Ubuntu 22.04)
 * An AMD U280 FPGA (for FPGA simulation)
-* Linux operating system (We used Ubuntu 20.04 and Ubuntu 22.04)
 
 Dependencies Installation
 ========================
@@ -68,7 +68,7 @@ cd $FireGuard/Software/guardian_kernel
 make $kernel_name
 ```
 
-As described in the paper, 4 guardian kernels are supported. Set the $kernel_name correspondingly:
+As described in the paper, 4 guardian kernels are supported. Setting the $kernel_name correspondingly:
 
 ```
 gc_main_pmc: performance counter
@@ -80,13 +80,13 @@ gc_main_none: without a guardian kernel
 
 With the compilation, a guadian_kernel.o is generated. 
 
-Now, compile Parsec and link the guardian kernel:
+Now, compiling Parsec and link the guardian_kernel.o:
 ```
 cd $FireGuard/Software/parsec/pkgs
 ./build_parsec.sh
 ```
 
-(**OUTPUT III** ) After a few minutes, the Parsec is compiled with the guardian kernel:
+(**OUTPUT III** ) After a few minutes, the Parsec is compiled with the guardian_kernel.o:
 ```
 ./app # Parsec benchmark
 ./run_parsec.sh # Scripts to run all Parsec benchmark
