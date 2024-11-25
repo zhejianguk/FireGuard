@@ -23,7 +23,7 @@ git checkout 1.7.0
 ./scripts/build-toolchains.sh riscv-tools # for a normal risc-v toolchain 
 ```
 
-FireGuard Hardware
+Hardware
 ========================
 Setting environments:
 
@@ -51,7 +51,7 @@ make config=RocketConfig
 ```
 
 
-FireGuard Software
+Software
 ========================
 To run Parsec, both Linux kernel and Parsec are required to be compiled:
 
