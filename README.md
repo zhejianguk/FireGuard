@@ -1,7 +1,7 @@
 FireGuard: A Generalized Microarchitecture for Fine-Grained Security Analysis on OoO Superscalar Cores
 ==================================================
 
-This repository contains artefacts and workflows to reproduce experiments from the DAC 2025 submission 1436
+This repository contains artefacts and workflows (Parsec 3.0) to reproduce experiments from the DAC 2025 submission 1436
 
 "FireGuard: A Generalized Microarchitecture for Fine-Grained Security Analysis on OoO Superscalar Cores"
 
@@ -10,9 +10,8 @@ Platform pre-requisities
 * An x86-64 system (for Verilator simulation, more cores will improve simulation time).
 * An AMD U280 FPGA (for FPGA simulation)
 * Linux operating system (We used Ubuntu 20.04 and Ubuntu 22.04)
-* A SPEC CPU2006 iso, placed in the root directory of the repository (we used v1.0), for the full workflow.
 
-Installation of Dependencies
+Dependencies Installation
 ========================
 Building simulation platform, RISC-V toolchain, Chisel toolchain, and other dependencies: 
 
@@ -48,9 +47,55 @@ make config=RocketConfig
 After a few hours, a software simulator and the corresponding Verilog code will be generated:
 ```
 ./RocketConfig # Software Simulator
-./generated-src/chipyard.TestHarness.RocketConfig/chipyard.TestHarness.RocketConfig.top.v # Verilog code
+(OUTPUT I) ./generated-src/chipyard.TestHarness.RocketConfig/chipyard.TestHarness.RocketConfig.top.v # Verilog code
 ```
 
 
 FireGuard Software
 ========================
+To run Parsec, both Linux kernel and Parsec are required to be compiled:
+
+For Linux, downloading the kernel code:
+```
+git clone https://github.com/firesim/linux
+git checkout firesim-v57
+```
+(OUTPUT II) With that, compiling the kernel using following steps: [link](https://firemarshal.readthedocs.io/en/latest/index.html)
+
+For Parsec, compiling guardian kernel first:
+```
+cd $FireGuard/Software/guardian_kernel
+make $kernel_name
+```
+
+As described in the paper, 5 guardian kernels are supported. Set the $kernel_name correspondingly:
+
+```
+gc_main_none: without a guardian kernel 
+gc_main_pmc: performance counter
+gc_main_sanitiser: address sanitiser
+gc_main_ss: shadow stack
+gc_main_minesweeper: mine sweeper 
+```
+
+With the compilation, a guadian_kernel.o is generated. 
+
+Now, compile Parsec and link the guardian kernel:
+```
+cd $FireGuard/Software/parsec/pkgs
+./build_parsec.sh
+```
+
+After a few minutes, the parsec is compiled with the guardian kernel:
+```
+(OUTPUT III) ./app # Parsec benchmark
+./run_parsec.sh # Scripts to run all Parsec benchmark
+```
+
+FPGA Simulation
+========================
+With the above steps, hardware and software are generated.
+
+Deploying the hardware on the U280 FPGA using standard Xilinx steps or FireSim: [link](https://docs.fires.im/en/latest/Getting-Started-Guides/On-Premises-FPGA-Getting-Started/Running-Simulations/Running-Single-Node-Simulation-Xilinx-Alveo-U280.html)
+
+The Verilog is generated in (OUTPUT I), and the OS kernel and workload are in (OUTPUT II & III).
