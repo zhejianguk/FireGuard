@@ -47,7 +47,7 @@ make config=RocketConfig
 After a few hours, a software simulator and the corresponding Verilog code will be generated:
 ```
 ./RocketConfig # Software Simulator
-(OUTPUT I) ./generated-src/chipyard.TestHarness.RocketConfig/chipyard.TestHarness.RocketConfig.top.v # Verilog code
+**OUTPUT I** ./generated-src/chipyard.TestHarness.RocketConfig/chipyard.TestHarness.RocketConfig.top.v # Verilog code
 ```
 
 
@@ -60,7 +60,7 @@ For Linux, downloading the kernel code:
 git clone https://github.com/firesim/linux
 git checkout firesim-v57
 ```
-(OUTPUT II) With that, compiling the kernel using following steps: [link](https://firemarshal.readthedocs.io/en/latest/index.html)
+**OUTPUT II** With that, compiling the kernel using following steps: [link](https://firemarshal.readthedocs.io/en/latest/index.html)
 
 For Parsec, compiling guardian kernel first:
 ```
@@ -86,9 +86,9 @@ cd $FireGuard/Software/parsec/pkgs
 ./build_parsec.sh
 ```
 
-After a few minutes, the parsec is compiled with the guardian kernel:
+After a few minutes, the Parsec is compiled with the guardian kernel:
 ```
-(OUTPUT III) ./app # Parsec benchmark
+**OUTPUT III** ./app # Parsec benchmark
 ./run_parsec.sh # Scripts to run all Parsec benchmark
 ```
 
@@ -98,4 +98,4 @@ With the above steps, hardware and software are generated.
 
 Deploying the hardware on the U280 FPGA using standard Xilinx steps or FireSim: [link](https://docs.fires.im/en/latest/Getting-Started-Guides/On-Premises-FPGA-Getting-Started/Running-Simulations/Running-Single-Node-Simulation-Xilinx-Alveo-U280.html)
 
-The Verilog is generated in (OUTPUT I), and the OS kernel and workload are in (OUTPUT II & III).
+The Verilog is generated in **OUTPUT I**, and the OS kernel and workload are in **OUTPUT II & III**.
