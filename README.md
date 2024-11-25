@@ -13,7 +13,7 @@ Platform pre-requisities
 
 Dependencies Installation
 ========================
-Building simulation platform, RISC-V toolchain, Chisel toolchain, and other dependencies: 
+**Step 1.** Building simulation platform, RISC-V toolchain, Chisel toolchain, and other dependencies: 
 
 ```
 git clone https://github.com/ucb-bar/chipyard.git
@@ -25,7 +25,7 @@ git checkout 1.7.0
 
 Hardware
 ========================
-Setting environments:
+**Step 1.** Setting environments:
 
 ```
 export FIREGUARD=$(dirname $(pwd))
@@ -33,12 +33,12 @@ export PLATFORM=$(pwd)
 . ./env.sh
 ```
 
-Updating the source code, ensuring to achieve the latest version:
+**Step 2.** Updating the source code, ensuring to achieve the latest version:
 ```
 $FIREGUARD/Scripts/update_src.sh
 ```
 
-Building hardware for FireGuard:
+**Step 3.** Building hardware for FireGuard:
 ```
 cd $PLATFORM/sims/verilator
 make config=RocketConfig
@@ -55,14 +55,14 @@ Software
 ========================
 To run Parsec, both Linux kernel and Parsec are required to be compiled:
 
-For Linux, downloading the kernel code:
+**Step 1.** For Linux, downloading the kernel code:
 ```
 git clone https://github.com/firesim/linux
 git checkout firesim-v57
 ```
 (**OUTPUT II**) With that, compiling the kernel using following steps: [link](https://firemarshal.readthedocs.io/en/latest/index.html)
 
-For Parsec, compiling guardian kernel first:
+**Step 2.**For Parsec, compiling guardian kernel first:
 ```
 cd $FireGuard/Software/guardian_kernel
 make $kernel_name
@@ -80,7 +80,7 @@ gc_main_none: without a guardian kernel
 
 With the compilation, a guadian_kernel.o is generated. 
 
-Now, compiling Parsec and link the guardian_kernel.o:
+**Step 3.** Now, compiling Parsec and link the guardian_kernel.o:
 ```
 cd $FireGuard/Software/parsec/pkgs
 ./build_parsec.sh
