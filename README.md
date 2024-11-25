@@ -12,7 +12,7 @@ Platform pre-requisities
 * Linux operating system (We used Ubuntu 20.04 and Ubuntu 22.04)
 * A SPEC CPU2006 iso, placed in the root directory of the repository (we used v1.0), for the full workflow.
 
-Installation of Toolchain
+Installation of Dependencies
 ========================
 Building simulation platform, RISC-V toolchain, Chisel toolchain, and other dependencies: 
 
@@ -26,7 +26,7 @@ git checkout 1.7.0
 
 FireGuard Hardware
 ========================
-Setting environments
+Setting environments:
 
 ```
 export FIREGUARD=$(dirname $(pwd))
@@ -34,16 +34,23 @@ export PLATFORM=$(pwd)
 . ./env.sh
 ```
 
-Updating source code
+Updating the source code, ensuring to achieve the latest version:
 ```
 $FIREGUARD/Scripts/update_src.sh
 ```
 
-Building Hardware 
+Building hardware for FireGuard:
 ```
 cd $PLATFORM/sims/verilator
 make config=RocketConfig
 ```
+
+After a few hours, a software simulator and the corresponding Verilog code will be generated:
+```
+./RocketConfig # Software Simulator
+./generated-src/chipyard.TestHarness.RocketConfig/chipyard.TestHarness.RocketConfig.top.v # Verilog code
+```
+
 
 FireGuard Software
 ========================
